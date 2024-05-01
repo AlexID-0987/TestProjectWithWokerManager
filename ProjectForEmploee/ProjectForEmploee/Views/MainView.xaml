@@ -1,0 +1,33 @@
+﻿<Window x:Class="ProjectForEmploee.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:ProjectForEmploee.ViewModel"
+        xmlns:local1="clr-namespace:ProjectForEmploee.Models"
+        mc:Ignorable="d"
+        Title="Emploees" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </Window.DataContext>
+    
+    <Grid>
+        <StackPanel>
+            <StackPanel>
+                <TextBlock Text=" " x:Name="CountEmpl" Foreground="red" FontSize="16" Margin="5"/>
+                <TextBlock Text=" " x:Name="CountEmpl1" Foreground="Green" FontSize="16" Margin="5"/>
+            </StackPanel>
+            <DataGrid AutoGenerateColumns="true"
+                  ItemsSource="{Binding globalPeople}"
+                  CanUserAddRows="True"
+                  MinColumnWidth="60"
+                  x:Name="MyWindow"
+                  SelectedItem="{Binding SelectedString}">
+
+            </DataGrid>
+
+
+        </StackPanel>
+    </Grid>
+    
+</Window>
