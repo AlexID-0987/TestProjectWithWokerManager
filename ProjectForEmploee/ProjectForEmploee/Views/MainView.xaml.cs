@@ -21,6 +21,8 @@ namespace ProjectForEmploee.Views
     /// <summary>
     /// Interaction logic for MainView.xaml
     /// </summary>
+    /// //Зберігаємо данні у файлі Json, розташованої у папці бин. Отримання данних, видалення, додавання відбувається через інтерфейс грида.
+    /// У горі відображається статистика данних.
     public partial class MainView : Window
     {
         private readonly string PATH = $"{Environment.CurrentDirectory}\\emloeeList.json";
