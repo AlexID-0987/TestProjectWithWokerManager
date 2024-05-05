@@ -12,22 +12,40 @@
     </Window.DataContext>
     
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="600"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+       
             <StackPanel>
-                <TextBlock Text=" " x:Name="CountEmpl" Foreground="red" FontSize="16" Margin="5"/>
-                <TextBlock Text=" " x:Name="CountEmpl1" Foreground="Green" FontSize="16" Margin="5"/>
-            </StackPanel>
-            <DataGrid AutoGenerateColumns="true"
+                <StackPanel>
+                    <TextBlock Text=" " x:Name="CountEmpl" Foreground="red" FontSize="16" Margin="5"/>
+                    <TextBlock Text=" " x:Name="CountEmpl1" Foreground="Green" FontSize="16" Margin="5"/>
+                </StackPanel>
+
+            <DataGrid  AutoGenerateColumns="true" Grid.Column="0"
                   ItemsSource="{Binding globalPeople}"
                   CanUserAddRows="True"
                   MinColumnWidth="60"
                   x:Name="MyWindow"
-                  SelectedItem="{Binding SelectedString}">
-
+                  SelectedItem="{Binding SelectedEmploee}">
+                
             </DataGrid>
 
 
+
+
+
         </StackPanel>
+        <StackPanel Grid.Column="1" Background="#32a850">
+            <Button Content="Add Emploee"
+                 Width="100" Margin="20" Background="#3246a8" Click="Button_Click"/>
+            <Button Content="Edit Emploee" Width="100" Margin="20" Background="Yellow" Click="Button_Click_1"/>
+            <Button Content="Delete" Width="100" Margin="20" Background="red" Click="Button_Click_2" />
+        </StackPanel>
+
+
+
     </Grid>
     
 </Window>

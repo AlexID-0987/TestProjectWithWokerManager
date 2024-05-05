@@ -66,9 +66,17 @@
     <Compile Include="Infrastructure\RelayCommand.cs" />
     <Compile Include="Models\ChangetPozitions.cs" />
     <Compile Include="Models\ChangetStatus.cs" />
+    <Compile Include="Models\EditEmploeeTheListEmploee.cs" />
     <Compile Include="Models\Emploee.cs" />
     <Compile Include="Services\FileService.cs" />
+    <Compile Include="Services\ServicesCrudEmploees.cs" />
+    <Compile Include="Views\EditEmploee.xaml.cs">
+      <DependentUpon>EditEmploee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="Views\AddEmploee.xaml.cs">
+      <DependentUpon>AddEmploee.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -101,6 +109,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\EditEmploee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddEmploee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

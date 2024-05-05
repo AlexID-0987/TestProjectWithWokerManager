@@ -1,0 +1,33 @@
+﻿<Window x:Class="ProjectForEmploee.Views.AddEmploee"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectForEmploee.Views"
+        mc:Ignorable="d"
+        Title="AddEmploee" Height="450" Width="500">
+    <Grid Background="coral">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="200" Margin="20">
+            <StackPanel>
+                <TextBlock Text="Name"></TextBlock>
+                <TextBox Name="Name"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="LastName"></TextBlock>
+                <TextBox Name="LastName"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Salary"></TextBlock>
+                <TextBox Name="Salary"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Info"></TextBlock>
+                <TextBox Name="Info"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="20">
+                <Button Content="Button" Click="Button_Click" Background="green"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Window>

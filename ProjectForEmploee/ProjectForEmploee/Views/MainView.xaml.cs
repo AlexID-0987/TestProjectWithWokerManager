@@ -1,20 +1,13 @@
-﻿using ProjectForEmploee.Models;
+﻿using Microsoft.Win32;
+using ProjectForEmploee.Models;
 using ProjectForEmploee.Services;
 using ProjectForEmploee.ViewModel;
 using System;
-using System.Collections.Generic;
+
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace ProjectForEmploee.Views
 {
@@ -27,7 +20,12 @@ namespace ProjectForEmploee.Views
     {
         private readonly string PATH = $"{Environment.CurrentDirectory}\\emloeeList.json";
         public BindingList<Emploee> toEmploee;
+        public Emploee SelecnedEmploee { get; set; }
+        EditEmploee EditEmploee;
+        //ServicesCrudEmploees toEmploee = new ServicesCrudEmploees();
         private FileService fileServices;
+        
+        ServicesCrudEmploees servicesCrudEmploees = new ServicesCrudEmploees();
         MainViewModel MainViewModel = new MainViewModel();
         public MainView()
         {
@@ -52,6 +50,7 @@ namespace ProjectForEmploee.Views
             VizibilityQuantity();
             Summma();
             toEmploee.ListChanged += ToEmploee_ListChanged;
+            
         }
 
         private void ToEmploee_ListChanged(object sender, ListChangedEventArgs e)
@@ -90,5 +89,46 @@ namespace ProjectForEmploee.Views
             
         }
         
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+            AddEmploee addEmploee = new AddEmploee(this);
+            addEmploee.ShowDialog();
+            
+        }
+        public void Configure(Emploee emp)
+        {
+            Emploee e = new Emploee() { NAME = emp.NAME,LASTNAME=emp.LASTNAME,SALARY=emp.SALARY,INFO=emp.INFO };
+            toEmploee.Add(e);
+        }
+         
+        public void EditEmploeeMyList(Emploee emploee)
+        {
+            Emploee changetName = MyWindow.SelectedItem as Emploee;
+            changetName.NAME = emploee.NAME;
+            changetName.LASTNAME = emploee.LASTNAME;
+            changetName.INFO = emploee.INFO;
+            
+        }
+
+        public Emploee changetEmplooeInWindows()
+        {
+            Emploee changetPersonInWindows = MyWindow.SelectedItem as Emploee;
+            return changetPersonInWindows;
+        }
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Emploee changetName = MyWindow.SelectedItem as Emploee;
+            EditEmploee editEmploee = new EditEmploee(this);
+            editEmploee.EditForEmploee(changetName);
+            editEmploee.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Emploee changetName = MyWindow.SelectedItem as Emploee;
+            toEmploee.Remove(changetName);
+            
+        }
     }
 }
