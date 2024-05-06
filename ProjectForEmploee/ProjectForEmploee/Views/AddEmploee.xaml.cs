@@ -1,4 +1,5 @@
 ﻿using ProjectForEmploee.Models;
+using ProjectForEmploee.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,8 @@ namespace ProjectForEmploee.Views
     public partial class AddEmploee : Window
     {
         MainView MainViewWindow;
+        ServicesCrudEmploees servicesCrudEmploees = new ServicesCrudEmploees();
+        
         public AddEmploee(MainView mainView)
         {
             InitializeComponent();
@@ -29,13 +32,16 @@ namespace ProjectForEmploee.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string name = Name.Text;
+            string NameItem = Name.Text;
             string lastname = LastName.Text;
             double salary = Convert.ToDouble(Salary.Text);
             string info = Info.Text;
-            Emploee emploee = new Emploee() { NAME = name, LASTNAME=lastname,SALARY=salary,INFO=info };
+            Emploee emploee = new Emploee() { NAME = NameItem, LASTNAME = lastname, SALARY = salary, INFO = info };
             MainViewWindow.Configure(emploee);
             this.Close();
+            
+            
+            
         }
     }
 }

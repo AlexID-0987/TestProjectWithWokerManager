@@ -9,7 +9,7 @@
     <Grid Background="coral">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="200" Margin="20">
             <StackPanel>
-                <TextBlock Text="Name"></TextBlock>
+                <TextBlock Text="Name" ></TextBlock>
                 <TextBox Name="Name"></TextBox>
             </StackPanel>
             <StackPanel>

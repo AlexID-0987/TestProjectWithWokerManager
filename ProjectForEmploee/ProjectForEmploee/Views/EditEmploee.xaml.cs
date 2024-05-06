@@ -57,7 +57,6 @@ namespace ProjectForEmploee.ViewModel
             DateTime dateTime = DateTime;
             Emploee editEmploeeForMyList = new Emploee() { NAME=name,LASTNAME=last,INFO=info,Data=dateTime};
             main.EditEmploeeMyList(editEmploeeForMyList);
-            
             this.Close();
         }
 

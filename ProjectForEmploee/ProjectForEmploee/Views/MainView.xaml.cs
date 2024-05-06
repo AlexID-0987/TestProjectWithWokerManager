@@ -7,7 +7,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
-
+using System.Windows.Controls;
 
 namespace ProjectForEmploee.Views
 {
@@ -16,13 +16,15 @@ namespace ProjectForEmploee.Views
     /// </summary>
     /// //Зберігаємо данні у файлі Json, розташованої у папці бин. Отримання данних, видалення, додавання відбувається через інтерфейс грида.
     /// У горі відображається статистика данних.
+    /// відповідні кнопки створюють CRUD операції з нашщю колекцією, також зберігають у файл.
+    /// у другому проєкті - Unit test.
     public partial class MainView : Window
     {
         private readonly string PATH = $"{Environment.CurrentDirectory}\\emloeeList.json";
-        public BindingList<Emploee> toEmploee;
+        
         public Emploee SelecnedEmploee { get; set; }
         EditEmploee EditEmploee;
-        //ServicesCrudEmploees toEmploee = new ServicesCrudEmploees();
+        ServicesCrudEmploees myListEmploee = new ServicesCrudEmploees();
         private FileService fileServices;
         
         ServicesCrudEmploees servicesCrudEmploees = new ServicesCrudEmploees();
@@ -38,7 +40,7 @@ namespace ProjectForEmploee.Views
             fileServices = new FileService(PATH);
             try
             {
-                toEmploee = fileServices.FileEmploee();
+                myListEmploee.toEmploee = fileServices.FileEmploee();
             }
             catch(Exception ex)
             {
@@ -46,10 +48,10 @@ namespace ProjectForEmploee.Views
                 Close();
             }
             
-            MyWindow.ItemsSource = toEmploee;
+            MyWindow.ItemsSource = myListEmploee.toEmploee;
             VizibilityQuantity();
             Summma();
-            toEmploee.ListChanged += ToEmploee_ListChanged;
+           myListEmploee.toEmploee.ListChanged += ToEmploee_ListChanged;
             
         }
 
@@ -71,6 +73,7 @@ namespace ProjectForEmploee.Views
         }
         public void VizibilityQuantity()
         {
+            
             string countEmploees = Convert.ToString(Emploee.COUNT);
             
             CountEmpl.Text = $"Quantity emploees: {countEmploees}";
@@ -80,7 +83,7 @@ namespace ProjectForEmploee.Views
             Emploee emploee = new Emploee();
             double SalarySum=0;
             double Total = 0; 
-            foreach (Emploee number in toEmploee)
+            foreach (Emploee number in myListEmploee.toEmploee)
             {
                 SalarySum +=number.SALARY;
                 Total= SalarySum / Emploee.COUNT;
@@ -98,23 +101,33 @@ namespace ProjectForEmploee.Views
         }
         public void Configure(Emploee emp)
         {
-            Emploee e = new Emploee() { NAME = emp.NAME,LASTNAME=emp.LASTNAME,SALARY=emp.SALARY,INFO=emp.INFO };
-            toEmploee.Add(e);
+            try
+            {
+                Emploee e = new Emploee() { NAME = emp.NAME, LASTNAME = emp.LASTNAME, SALARY = emp.SALARY, INFO = emp.INFO };
+                myListEmploee.toEmploee.Add(e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Not value{ex}");
+            }
+
+
         }
-         
+
         public void EditEmploeeMyList(Emploee emploee)
         {
             Emploee changetName = MyWindow.SelectedItem as Emploee;
             changetName.NAME = emploee.NAME;
             changetName.LASTNAME = emploee.LASTNAME;
             changetName.INFO = emploee.INFO;
-            
+
         }
 
         public Emploee changetEmplooeInWindows()
         {
-            Emploee changetPersonInWindows = MyWindow.SelectedItem as Emploee;
-            return changetPersonInWindows;
+           
+           Emploee changetPersonInWindows = MyWindow.SelectedItem as Emploee;
+           return changetPersonInWindows;
         }
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -127,8 +140,20 @@ namespace ProjectForEmploee.Views
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             Emploee changetName = MyWindow.SelectedItem as Emploee;
-            toEmploee.Remove(changetName);
+            myListEmploee.toEmploee.Remove(changetName);
             
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            Emploee changetName = MyWindow.SelectedItem as Emploee;
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
+            string saveFile = $"Name:{changetName.NAME}, Lastname:{changetName.NAME}, Info:{changetName.INFO}, Salary:{changetName.SALARY}";
+            if(saveFileDialog.ShowDialog()==true)
+            {
+                File.WriteAllText(saveFileDialog.FileName, saveFile.ToString());
+            }
         }
     }
 }

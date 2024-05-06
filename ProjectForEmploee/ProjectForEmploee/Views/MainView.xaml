@@ -42,6 +42,7 @@
                  Width="100" Margin="20" Background="#3246a8" Click="Button_Click"/>
             <Button Content="Edit Emploee" Width="100" Margin="20" Background="Yellow" Click="Button_Click_1"/>
             <Button Content="Delete" Width="100" Margin="20" Background="red" Click="Button_Click_2" />
+            <Button Content="Save" Width="100" Margin="20" Background="#c203fc" Click="Button_Click_3"/>
         </StackPanel>
 
 
