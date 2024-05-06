@@ -25,7 +25,7 @@
                 <TextBox Name="Info"></TextBox>
             </StackPanel>
             <StackPanel Margin="20">
-                <Button Content="Button" Click="Button_Click" Background="green"/>
+                <Button Content="Add Emploee" Click="Button_Click" Background="green"/>
             </StackPanel>
             
         </StackPanel>
