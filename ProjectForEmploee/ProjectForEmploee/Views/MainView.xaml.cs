@@ -101,25 +101,14 @@ namespace ProjectForEmploee.Views
         }
         public void Configure(Emploee emp)
         {
-            try
-            {
-                Emploee e = new Emploee() { NAME = emp.NAME, LASTNAME = emp.LASTNAME, SALARY = emp.SALARY, INFO = emp.INFO };
-                myListEmploee.toEmploee.Add(e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Not value{ex}");
-            }
-
+            myListEmploee.AddToEmploeeList(emp);
 
         }
 
         public void EditEmploeeMyList(Emploee emploee)
         {
             Emploee changetName = MyWindow.SelectedItem as Emploee;
-            changetName.NAME = emploee.NAME;
-            changetName.LASTNAME = emploee.LASTNAME;
-            changetName.INFO = emploee.INFO;
+            myListEmploee.EditMyList(emploee, changetName);
 
         }
 
@@ -147,13 +136,7 @@ namespace ProjectForEmploee.Views
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             Emploee changetName = MyWindow.SelectedItem as Emploee;
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
-            string saveFile = $"Name:{changetName.NAME}, Lastname:{changetName.NAME}, Info:{changetName.INFO}, Salary:{changetName.SALARY}";
-            if(saveFileDialog.ShowDialog()==true)
-            {
-                File.WriteAllText(saveFileDialog.FileName, saveFile.ToString());
-            }
+            myListEmploee.SaveFileEmploee(changetName);
         }
     }
 }

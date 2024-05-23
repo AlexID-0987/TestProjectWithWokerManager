@@ -38,6 +38,7 @@ namespace ProjectForEmploee.Views
             string info = Info.Text;
             Emploee emploee = new Emploee() { NAME = NameItem, LASTNAME = lastname, SALARY = salary, INFO = info };
             MainViewWindow.Configure(emploee);
+            
             this.Close();
             
             
