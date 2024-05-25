@@ -2,6 +2,7 @@
 using ProjectForEmploee.Models;
 using ProjectForEmploee.Views;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
@@ -31,16 +32,6 @@ namespace ProjectForEmploee.Services
             changetName.LASTNAME = emploee.LASTNAME;
             changetName.INFO = emploee.INFO;
         }
-
-        public void SaveFileEmploee(Emploee changetName)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
-            string saveFile = $"Name:{changetName.NAME}, Lastname:{changetName.NAME}, Info:{changetName.INFO}, Salary:{changetName.SALARY}";
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                File.WriteAllText(saveFileDialog.FileName, saveFile.ToString());
-            }
-        }
+        
     }
 }

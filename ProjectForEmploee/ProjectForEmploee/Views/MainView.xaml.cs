@@ -3,7 +3,7 @@ using ProjectForEmploee.Models;
 using ProjectForEmploee.Services;
 using ProjectForEmploee.ViewModel;
 using System;
-
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows;
@@ -22,6 +22,7 @@ namespace ProjectForEmploee.Views
     {
         private readonly string PATH = $"{Environment.CurrentDirectory}\\emloeeList.json";
         
+
         public Emploee SelecnedEmploee { get; set; }
         EditEmploee EditEmploee;
         ServicesCrudEmploees myListEmploee = new ServicesCrudEmploees();
@@ -135,8 +136,14 @@ namespace ProjectForEmploee.Views
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            Emploee changetName = MyWindow.SelectedItem as Emploee;
-            myListEmploee.SaveFileEmploee(changetName);
+            
+            using (StreamWriter writer = new StreamWriter(@"C:\temp\MyTextFile.txt"))
+            {
+                foreach (Emploee myList in myListEmploee.toEmploee)
+                {
+                    writer.WriteLine($"\t{myList.NAME},|{myList.LASTNAME},|{myList.STATUS}|{myList.SALARY}|{myList.INFO}|{myList.EMPLOEEPOZITIONS}|{myList.Data}");
+                }
+            }
         }
     }
 }
