@@ -139,10 +139,18 @@ namespace ProjectForEmploee.Views
             
             using (StreamWriter writer = new StreamWriter(@"C:\temp\MyTextFile.txt"))
             {
-                foreach (Emploee myList in myListEmploee.toEmploee)
+                if(myListEmploee.toEmploee.Count==0)
                 {
-                    writer.WriteLine($"\t{myList.NAME},|{myList.LASTNAME},|{myList.STATUS}|{myList.SALARY}|{myList.INFO}|{myList.EMPLOEEPOZITIONS}|{myList.Data}");
+                    MessageBox.Show("Your list- empty!");
                 }
+                else
+                {
+                    foreach (Emploee myList in myListEmploee.toEmploee)
+                    {
+                        writer.WriteLine($"\t{myList.NAME},|{myList.LASTNAME},|{myList.STATUS}|{myList.SALARY}|{myList.INFO}|{myList.EMPLOEEPOZITIONS}|{myList.Data}");
+                    }
+                }
+                
             }
         }
     }
